@@ -44,3 +44,22 @@ export const registerUser = async (username, email, password) => {
         console.log(error)
     }
 }
+
+export const readUsers = async () => {
+    try {
+        const response = await fetch ("http://localhost:5001/users/readUsers",{
+            method: "GET",
+            headers: {
+                "Content-Type" : "application/json" // tells our rest api that the body of this 
+                                                    // request will be in JSON format
+            }
+        })
+        const data = await response.json()
+        const usernames = data.users.map(users => users.username)
+        console.log(usernames)
+        return usernames
+    } catch (error) {
+        console.log(error)
+        
+    }
+}

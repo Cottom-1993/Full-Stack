@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "./components/Login"
 import Register from "./components/Register"
+import ReadUsers from "./components/ReadUsers"
 
 import {useState} from 'react'
 
@@ -17,12 +18,14 @@ function App() {
       <br></br>
       
       <Login newUser = {setUser} />
-    
-
+       
       {
         user
         ?
+        <>
         <h2>Hello Welcome {user} you have logged in</h2>
+        <ReadUsers/>
+        </>
         :
         <h2>Please log in</h2>
       }
