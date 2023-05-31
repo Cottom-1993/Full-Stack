@@ -5,9 +5,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(118, 118, 118, 0.974);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.login {
+
+  text-align: center;
+
+}
+
+.register{
+  text-align: center;
+}
+/* PLI stands for please log in header */
+#PLI{
+  text-align: center;
+}
+/* MAA stands for my amazing app header */
+#MAA{
+  text-align: center;
 }

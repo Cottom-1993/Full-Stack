@@ -1,6 +1,9 @@
+import { writeCookie } from "../common"
+
+
 export const loginUser = async (username, password, newUser) => {
     try {
-        const response = await fetch("http://localhost:5001/users/login", {
+        const response = await fetch(`${process.env.REACT_APP_REST_API_URL}login`, {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json" // tells our rest api that the body of this 
@@ -13,6 +16,8 @@ export const loginUser = async (username, password, newUser) => {
         })
         const data = await response.json()
         console.log(data)
+        console.log(data.token)
+        writeCookie("jwt_token", data.token,7)
         newUser(data.user)
 
     } catch (error) {
@@ -26,7 +31,7 @@ export const registerUser = async (username, email, password) => {
     console.log(email)
     console.log(password)
     try {
-        const response = await fetch ("http://localhost:5001/users/register", {
+        const response = await fetch (`${process.env.REACT_APP_REST_API_URL}register`, {
             method: "POST", 
             headers: {
                 "Content-Type" : "application/json" // tells our rest api that the body of this 
@@ -47,7 +52,7 @@ export const registerUser = async (username, email, password) => {
 
 export const readUsers = async () => {
     try {
-        const response = await fetch ("http://localhost:5001/users/readUsers",{
+        const response = await fetch (`${process.env.REACT_APP_REST_API_URL}readUsers`,{
             method: "GET",
             headers: {
                 "Content-Type" : "application/json" // tells our rest api that the body of this 
@@ -61,5 +66,23 @@ export const readUsers = async () => {
     } catch (error) {
         console.log(error)
         
+    }
+}
+
+export const authCheck = async (token) => {
+    try {
+        const response = await fetch (`${process.env.REACT_APP_REST_API_URL}authCheck`, {
+            method: "GET",
+            headers: {
+                "Content-Type" : "application/json",
+                "Authorization" : token
+            
+            }
+        })
+        const data = await response.json()
+        return data.user.user
+        
+    } catch (error) {
+        console.log(error)
     }
 }

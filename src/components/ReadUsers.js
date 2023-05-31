@@ -25,7 +25,7 @@ const ReadUsers = () => {
                     <div className="usernames">
                         {
                             usernames.map((user) =>(
-                                <h3>{user}</h3>
+                                <h3 key={user}>{user}</h3>
                             ))
                         }
                     </div>
